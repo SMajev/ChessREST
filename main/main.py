@@ -1,7 +1,28 @@
-from flask import Flask
-
-app = Flask(__name__)
+from figures import *
+from board import Board
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    board = Board()
+    board.show_board()
+# litera , cyfra
+    pawn1 = Pawn(board.board, 7, 1)
+    pawn2 = Pawn(board.board, 1, 6, "black")
+    pawn3 = Pawn(board.board, 1, 2)
+    pawn4 = Pawn(board.board, 0, 5, "black")
+
+    print("Pawn1(White):")
+    print(pawn1.position)
+    print(pawn1.list_available_moves())
+    print("\n")
+    print("Pawn2(Black):")
+    print(pawn2.position)
+    print(pawn2.list_available_moves())
+    print("\n")
+    print("Pawn3(White):")
+    print(pawn3.position)
+    print(pawn3.list_available_moves())
+    print("\n")
+    print("Pawn4(Black):")
+    print(pawn4.position)
+    print(pawn4.list_available_moves())
