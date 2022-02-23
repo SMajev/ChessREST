@@ -25,12 +25,14 @@ class Pawn(Figure):
         super().__init__(board, x, y)
         self.name = "Pawn"
         self.color = color
-        if color == "white" and y == 1:
-            self.first_move = True
-        elif color == "black" and y == 6:
-            self.first_move = True
+
+    def first_move(self):
+        if self.color == "white" and self.y == 1:
+            return True
+        elif self.color == "black" and self.y == 6:
+            return True
         else:
-            self.first_move = False
+            return False
 
     def list_available_moves(self):
         avail_moves = []
@@ -42,7 +44,7 @@ class Pawn(Figure):
             else: 
                 pass
 
-            if self.first_move:
+            if self.first_move():
                 new_y = self.y + 2
                 avail_moves.append(self.board[self.y + 2][self.x])
 
@@ -54,7 +56,7 @@ class Pawn(Figure):
             else:
                 pass
 
-            if self.first_move:
+            if self.first_move():
                 avail_moves.append(self.board[new_y - 1][self.x])
 
 
@@ -64,8 +66,28 @@ class Pawn(Figure):
         is_posible = None
 
 
+
+
 class Rook(Figure):
-    pass
+    def __init__(self, board, x, y):
+        super().__init__(board, x, y)
+        self.name = 'Rook'
+
+    def list_available_moves(self):
+        avail_moves = []
+        print(self.position)
+        for i in range(len(self.board)):
+            if self.board[i][self.x] != self.position:
+                avail_moves.append(self.board[i][self.x])
+        for i in range(len(self.board)):
+            if self.board[self.y][i] != self.position:
+                avail_moves.append(self.board[self.y][i])
+        return avail_moves
+
+    def validate_move(self, dest_field):
+        is_posible = None
+
+
 
 
 class Bishop(Figure):
@@ -91,6 +113,3 @@ class King(Figure):
     pass
 
 
-# board = Board().board
-# pawn1 = Pawn(board, 0, 7)
-# pawn1.list_available_moves()
