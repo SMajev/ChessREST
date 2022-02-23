@@ -29,8 +29,10 @@ class Pawn(Figure):
     def first_move(self):
         if self.color == "white" and self.y == 1:
             return True
+
         elif self.color == "black" and self.y == 6:
             return True
+
         else:
             return False
 
@@ -41,7 +43,7 @@ class Pawn(Figure):
             new_x = self.x
             if new_y < len(self.board):
                 avail_moves.append(self.board[self.y + 1][self.x])
-            else: 
+            else:
                 pass
 
             if self.first_move():
@@ -52,55 +54,111 @@ class Pawn(Figure):
             new_y = self.y - 1
             if new_y > 0:
                 avail_moves.append(self.board[new_y][self.x])
-                
+
             else:
                 pass
 
             if self.first_move():
                 avail_moves.append(self.board[new_y - 1][self.x])
 
-
         return avail_moves
 
     def validate_move(self, dest_field):
         is_posible = None
-
-
 
 
 class Rook(Figure):
     def __init__(self, board, x, y):
         super().__init__(board, x, y)
-        self.name = 'Rook'
+        self.name = "Rook"
 
     def list_available_moves(self):
         avail_moves = []
-        print(self.position)
+
         for i in range(len(self.board)):
             if self.board[i][self.x] != self.position:
                 avail_moves.append(self.board[i][self.x])
+
         for i in range(len(self.board)):
             if self.board[self.y][i] != self.position:
                 avail_moves.append(self.board[self.y][i])
+
         return avail_moves
 
     def validate_move(self, dest_field):
         is_posible = None
 
 
-
-
 class Bishop(Figure):
-    pass
+    def __init__(self, board, x, y):
+        super().__init__(board, x, y)
+        self.name = "Bishop"
+
+    def list_available_moves(self):
+        avail_moves = []
+        new_filed = self.position
+        new_x = self.x 
+        new_y = self.y 
+        print(len(self.board))
+
+        def append(dx, dy):
+            for i in range(len(self.board)):
+                newx = self.x + dx * i
+                newy = self.y + dy * i 
+                if newx < len(self.board) -1  and newy < len(self.board) -1:
+                    avail_moves.append(self.board[newx][newy])
+
+                if 0 <= newx < 8 and 0 <= newy < 8:
+                    sq = (newy, newx)
+                #     if not self.board[sq].isupper():
+                #         out_squares.append(sq)
+                #         if self.board[sq].islower():
+                #             break
+                #     else:
+                #         break
+                # else:
+                #     break
+
+        # for i in range(len(self.board)):
+        #     if new_x < len(self.board) -1  and new_y < len(self.board) -1:
+        #         new_x -= 1
+        #         new_y -= 1
+        #         avail_moves.append(self.board[new_x][new_y])
+        
+        # for i in range(len(self.board)):
+        #     if new_x < len(self.board) -1  and new_y < len(self.board) -1:
+        #         new_x += 1
+        #         new_y += 1
+        #         if self.board[new_x][new_y] not in avail_moves:
+        #             avail_moves.append(self.board[new_x][new_y])
+
+        for dx in (-1, 1):
+            for dy in (-1, 1):
+                append(dx, dy)
+
+
+        return avail_moves
+
+    def validate_move(self, dest_field):
+        pass
 
 
 class Knight(Figure):
-    pass
+    def __init__(self, board, x, y):
+        super().__init__(board, x, y)
+        self.name = "Bishop"
+
+    def list_available_moves(self):
+        pass
+
+    def validate_move(self, dest_field):
+        pass
 
 
 class Queen(Figure):
     def __init__(self, x, y):
         super().__init__(x, y)
+        self.name = "Queen"
 
     def list_available_moves(self):
         avail_moves = []
@@ -110,6 +168,12 @@ class Queen(Figure):
 
 
 class King(Figure):
-    pass
+    def __init__(self, board, x, y):
+        super().__init__(board, x, y)
+        self.name = "King"
 
+    def list_available_moves(self):
+        pass
 
+    def validate_move(self, dest_field):
+        pass

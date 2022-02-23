@@ -28,7 +28,13 @@ if __name__ == "__main__":
 #     print(pawn4.position)
 #     print(pawn4.list_available_moves())
 
-rook1 = Rook(board.board, 0, 7)
-print(f"Rook{rook1.position}:")
-print(rook1.list_available_moves())
+# rook1 = Rook(board.board, 5, 5)
+# print(f"Rook{rook1.position}:")
+# print(rook1.list_available_moves())
+# print("\n")
+
+bishop1 = Bishop(board.board, 5, 5)
+print(f"Bishop{bishop1.position}:")
+print(bishop1.list_available_moves())
 print("\n")
+
