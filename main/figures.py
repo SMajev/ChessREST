@@ -1,4 +1,4 @@
-from abc import ABC, abstractmethod
+
 from figure import Figure
 
 
@@ -18,6 +18,8 @@ class Pawn(Figure):
         else:
             return False
 
+
+
     def list_available_moves(self):
         avail_moves = []
         if self.color == "white":
@@ -36,7 +38,6 @@ class Pawn(Figure):
             new_y = self.y - 1
             if new_y > 0:
                 avail_moves.append(self.board[new_y][self.x])
-
             else:
                 pass
 
@@ -46,7 +47,9 @@ class Pawn(Figure):
         return avail_moves
 
     def validate_move(self, dest_field):
-        is_posible = None
+        if dest_field in self.list_available_moves():
+            return True
+
 
 
 class Rook(Figure):
@@ -68,7 +71,8 @@ class Rook(Figure):
         return avail_moves
 
     def validate_move(self, dest_field):
-        is_posible = None
+        if dest_field in self.list_available_moves():
+            return True
 
 
 class Bishop(Figure):
@@ -99,8 +103,8 @@ class Bishop(Figure):
         return avail_moves
 
     def validate_move(self, dest_field):
-        pass
-
+        if dest_field in self.list_available_moves():
+            return True
 
 class Knight(Figure):
     def __init__(self, board, x, y):
@@ -130,7 +134,8 @@ class Knight(Figure):
         return avail_moves
 
     def validate_move(self, dest_field):
-        pass
+        if dest_field in self.list_available_moves():
+            return True
 
 
 class Queen(Figure):
@@ -142,7 +147,8 @@ class Queen(Figure):
         avail_moves = []
 
     def validate_move(self, dest_field):
-        is_posible = None
+        if dest_field in self.list_available_moves():
+            return True
 
 
 class King(Figure):
@@ -154,4 +160,5 @@ class King(Figure):
         pass
 
     def validate_move(self, dest_field):
-        pass
+        if dest_field in self.list_available_moves():
+            return True

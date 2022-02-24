@@ -12,9 +12,3 @@ class Board:
     def show_board(self):
         for row in self.board:
             print(row)
-
-    # def show_field(self, x, y):
-    #     print(self.board[x][y])
-
-    # def put_figure(self, name, x, y):
-    #     self.board[x][y] = name

@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 
+
 class Figure(ABC):
     @abstractmethod
     def __init__(self, board, x, y):
