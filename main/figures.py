@@ -96,46 +96,23 @@ class Bishop(Figure):
 
     def list_available_moves(self):
         avail_moves = []
-        new_filed = self.position
-        new_x = self.x 
-        new_y = self.y 
         print(len(self.board))
 
         def append(dx, dy):
             for i in range(len(self.board)):
-                newx = self.x + dx * i
-                newy = self.y + dy * i 
-                if newx < len(self.board) -1  and newy < len(self.board) -1:
-                    avail_moves.append(self.board[newx][newy])
+                new_x = self.x + dx * i
+                new_y = self.y + dy * i
 
-                if 0 <= newx < 8 and 0 <= newy < 8:
-                    sq = (newy, newx)
-                #     if not self.board[sq].isupper():
-                #         out_squares.append(sq)
-                #         if self.board[sq].islower():
-                #             break
-                #     else:
-                #         break
-                # else:
-                #     break
-
-        # for i in range(len(self.board)):
-        #     if new_x < len(self.board) -1  and new_y < len(self.board) -1:
-        #         new_x -= 1
-        #         new_y -= 1
-        #         avail_moves.append(self.board[new_x][new_y])
-        
-        # for i in range(len(self.board)):
-        #     if new_x < len(self.board) -1  and new_y < len(self.board) -1:
-        #         new_x += 1
-        #         new_y += 1
-        #         if self.board[new_x][new_y] not in avail_moves:
-        #             avail_moves.append(self.board[new_x][new_y])
+                if new_x < len(self.board) and new_y < len(self.board) :
+                    if new_x != self.x and new_y != self.y:
+                        if self.board[new_x][new_y] not in avail_moves:
+                            avail_moves.append(self.board[new_x][new_y])
+                else:
+                    break
 
         for dx in (-1, 1):
             for dy in (-1, 1):
                 append(dx, dy)
-
 
         return avail_moves
 
@@ -149,7 +126,26 @@ class Knight(Figure):
         self.name = "Bishop"
 
     def list_available_moves(self):
-        pass
+        avail_moves = []
+        knight_possible_moves = [
+            (-2, -1),
+            (-2, +1),
+            (+2, -1),
+            (+2, +1),
+            (-1, -2),
+            (-1, +2),
+            (+1, -2),
+            (+1, +2),
+        ]
+
+        for x, y in knight_possible_moves:
+            new_x = self.x + x
+            new_y = self.y + y
+
+            if 0 < new_x < len(self.board) and 0 < new_y < len(self.board):
+                avail_moves.append(self.board[new_y][new_x])
+
+        return avail_moves
 
     def validate_move(self, dest_field):
         pass

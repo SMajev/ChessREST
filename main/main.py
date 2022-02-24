@@ -33,8 +33,12 @@ if __name__ == "__main__":
 # print(rook1.list_available_moves())
 # print("\n")
 
-bishop1 = Bishop(board.board, 5, 5)
-print(f"Bishop{bishop1.position}:")
-print(bishop1.list_available_moves())
-print("\n")
+# bishop1 = Bishop(board.board, 5, 5)
+# print(f"Bishop{bishop1.position}:")
+# print(bishop1.list_available_moves())
+# print("\n")
 
+# knight = Knight(board.board, 2, 4)
+# print(f"knight{knight.position}:")
+# print(knight.list_available_moves())
+# print("\n")
