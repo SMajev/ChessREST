@@ -1,59 +1,59 @@
 from figures import *
-from board import Board
 
 
 class API:
-    def __init__(self):
-        self.board = Board().board
-        Board().show_board()
-
     def show_avail_moves_request(self, figure, x, y):
         if figure == "pawn":
-            pawn = Pawn(self.board, x, y)
-            print(x, y)
+            pawn = Pawn(x, y)
             return pawn.list_available_moves()
 
         if figure == "rook":
-            rook = Rook(self.board, x, y)
+            rook = Rook(x, y)
             return rook.list_available_moves()
 
         if figure == "bishop":
-            bishop = Bishop(self.board, x, y)
+            bishop = Bishop(x, y)
             return bishop.list_available_moves()
 
         if figure == "knight":
-            knight = Knight(self.board, x, y)
+            knight = Knight(x, y)
             return knight.list_available_moves()
 
         if figure == "queen":
-            queen = Queen(self.board, x, y)
+            queen = Queen(x, y)
             return queen.list_available_moves()
 
         if figure == "king":
-            king = King(self.board, x, y)
+            king = King(x, y)
             return king.list_available_moves()
+
+        else:
+            return False
 
     def validate_move(self, figure, x, y, x_dest, y_dest):
         if figure == "pawn":
-            pawn = Pawn(self.board, x, y)
+            pawn = Pawn(x, y)
             return pawn.validate_move(x_dest, y_dest)
 
         if figure == "rook":
-            rook = Rook(self.board, x, y)
-            return rook.validate_move(dest_field)
+            rook = Rook(x, y)
+            return rook.validate_move(x_dest, y_dest)
 
         if figure == "bishop":
-            bishop = Bishop(self.board, x, y)
-            return bishop.validate_move(dest_field)
+            bishop = Bishop(x, y)
+            return bishop.validate_move(x_dest, y_dest)
 
         if figure == "knight":
-            knight = Knight(self.board, x, y)
-            return knight.validate_move(dest_field)
+            knight = Knight(x, y)
+            return knight.validate_move(x_dest, y_dest)
 
         if figure == "queen":
-            queen = Queen(self.board, x, y)
-            return queen.validate_move(dest_field)
+            queen = Queen(x, y)
+            return queen.validate_move(x_dest, y_dest)
 
         if figure == "king":
-            king = King(self.board, x, y)
-            return king.validate_move(dest_field)
+            king = King(x, y)
+            return king.validate_move(x_dest, y_dest)
+
+        else:
+            return False

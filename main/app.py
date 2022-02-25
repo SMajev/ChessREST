@@ -3,44 +3,67 @@ from flask import jsonify
 from API import API
 from field_function import field_convert, field_check
 
-app = Flask(__name__)
+APP = Flask(__name__)
 API = API()
 
 
-@app.route("/api/avail_moves", methods=["GET"])
-def show_available_moves_for():
-    current_field = request.args.get("current_field")
-    figure = request.args.get("figure")
-    x, y, error = field_convert(current_field)
-    if x != None and y != None:
-        available_moves = API.show_avail_moves_request(figure, x, y)
-    else:
-        available_moves = None
+@APP.route("/api/opt1/<string:figure>/<string:current_field>", methods=["GET"])
+def show_available_moves_for(figure, current_field):
+    try:
+        x, y, error = field_convert(current_field)
+        if error != "This field doesn't exist!":
+            available_moves = API.show_avail_moves_request(figure, x, y)
+            if available_moves:
+                code = 200
+            else:
+                code = 404
+        else:
+            available_moves = None
+            code = 409
 
-    return jsonify(
-        availableMoves=available_moves,
-        figure=figure,
-        error=error,
-        currentField=current_field,
-    )
+        return (
+            jsonify(
+                availableMoves=available_moves,
+                figure=figure,
+                error=error,
+                currentField=current_field,
+            ),
+            code,
+        )
+    except:
+        return 500
 
 
-@app.route("/api/is_validate", methods=["GET"])
-def validate_move():
-    destination = request.args.get("destination")
-    current_field = request.args.get("current_field")
-    figure = request.args.get("figure")
-    x, y, error = field_convert(current_field)
-    x_dest, y_dest, error = field_convert(destination)
-    move = API.validate_move(figure, x, y, x_dest, y_dest)
-    return jsonify(
-        move=move,
-        figure=figure,
-        error=error,
-        current_field=current_field,
-        destination_field=destination,
-    )
+@APP.route(
+    "/api/opt2/<string:figure>/<string:current_field>/<string:destination_field>",
+    methods=["GET"],
+)
+def validate_move(figure, current_field, destination_field):
+    try:
+        x, y, error = field_convert(current_field)
+        if error != "This field doesn't exist!":
+            x_dest, y_dest, error = field_convert(destination_field)
+            move = API.validate_move(figure, x, y, x_dest, y_dest)
+            if move:
+                code = 200
+            else:
+                code = 409
+        else:
+            move = None
+
+        return (
+            jsonify(
+                move=move,
+                figure=figure,
+                error=error,
+                current_field=current_field,
+                destination_field=destination_field,
+            ),
+            code,
+        )
+    except:
+        return 500
 
 
 if __name__ == "__main__":
-    app.run(debug=True, port=8000)
+    APP.run(debug=True, port=8000)

@@ -1,14 +1,17 @@
 from abc import ABC, abstractmethod
 from field_function import tuple_to_string
+from board import Board
+
 
 class Figure(ABC):
     @abstractmethod
-    def __init__(self, board, x, y):
-        self.board = board
+    def __init__(self, x, y):
+        self.board = Board().board
         self.name = ""
         self.color = ""
         self.y = y
         self.x = x
+        print(self.x)
         self.position = self.board[self.y][self.x]
 
     @abstractmethod
