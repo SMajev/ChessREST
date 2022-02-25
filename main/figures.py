@@ -1,5 +1,5 @@
-
 from figure import Figure
+from field_function import tuple_to_string
 
 
 class Pawn(Figure):
@@ -7,6 +7,7 @@ class Pawn(Figure):
         super().__init__(board, x, y)
         self.name = "Pawn"
         self.color = color
+        print(self.position)
 
     def first_move(self):
         if self.color == "white" and self.y == 1:
@@ -17,8 +18,6 @@ class Pawn(Figure):
 
         else:
             return False
-
-
 
     def list_available_moves(self):
         avail_moves = []
@@ -44,12 +43,11 @@ class Pawn(Figure):
             if self.first_move():
                 avail_moves.append(self.board[new_y - 1][self.x])
 
-        return avail_moves
+        return tuple_to_string(avail_moves)
 
     def validate_move(self, dest_field):
         if dest_field in self.list_available_moves():
             return True
-
 
 
 class Rook(Figure):
@@ -68,7 +66,7 @@ class Rook(Figure):
             if self.board[self.y][i] != self.position:
                 avail_moves.append(self.board[self.y][i])
 
-        return avail_moves
+        return tuple_to_string(avail_moves)
 
     def validate_move(self, dest_field):
         if dest_field in self.list_available_moves():
@@ -89,7 +87,7 @@ class Bishop(Figure):
                 new_x = self.x + dx * i
                 new_y = self.y + dy * i
 
-                if new_x < len(self.board) and new_y < len(self.board) :
+                if new_x < len(self.board) and new_y < len(self.board):
                     if new_x != self.x and new_y != self.y:
                         if self.board[new_x][new_y] not in avail_moves:
                             avail_moves.append(self.board[new_x][new_y])
@@ -100,11 +98,12 @@ class Bishop(Figure):
             for dy in (-1, 1):
                 append(dx, dy)
 
-        return avail_moves
+        return tuple_to_string(avail_moves)
 
     def validate_move(self, dest_field):
         if dest_field in self.list_available_moves():
             return True
+
 
 class Knight(Figure):
     def __init__(self, board, x, y):
@@ -124,14 +123,14 @@ class Knight(Figure):
             (+1, +2),
         ]
 
-        for x, y in knight_possible_moves:
+        for y, x in knight_possible_moves:
             new_x = self.x + x
             new_y = self.y + y
 
             if 0 < new_x < len(self.board) and 0 < new_y < len(self.board):
                 avail_moves.append(self.board[new_y][new_x])
 
-        return avail_moves
+        return tuple_to_string(avail_moves)
 
     def validate_move(self, dest_field):
         if dest_field in self.list_available_moves():

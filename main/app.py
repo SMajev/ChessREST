@@ -1,33 +1,34 @@
 from flask import Flask, request
 from flask import jsonify
 from API import API
-
+from field_function import field_convert, field_check
 
 app = Flask(__name__)
 API = API()
 
-def field_convert(field):
-    x_letter = field[0:1]
-    letters = ["a", "b", "c", "d", "e", "f", "g", "h"]
-    x = int(letters.index(x_letter))
-    y = int(field[1:])
-    print(x, y)
-    return x, y 
 
-@app.route("/api", methods=["GET"])
-def test():
+@app.route("/api/avail_moves", methods=["GET"])
+def show_available_moves_for():
     destination = request.args.get("destination")
     current_field = request.args.get("current_field")
-    x, y = field_convert(current_field)
     figure = request.args.get("figure")
-    available_moves = API.show_avail_moves_request(figure, x, y)
+    x, y, error = field_convert(current_field)
+    if x != None and y != None:
+        available_moves = API.show_avail_moves_request(figure, x, y)
+    else:
+        available_moves = None
 
     return jsonify(
         availableMoves=available_moves,
         figure=figure,
-        error=None,
+        error=error,
         currentField=current_field,
     )
+
+
+@app.route("/api/is_validate", methods=["GET"])
+def validate_move():
+    pass
 
 
 if __name__ == "__main__":
