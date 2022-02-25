@@ -10,6 +10,7 @@ class API:
     def show_avail_moves_request(self, figure, x, y):
         if figure == "pawn":
             pawn = Pawn(self.board, x, y)
+            print(x, y)
             return pawn.list_available_moves()
 
         if figure == "rook":
@@ -32,10 +33,10 @@ class API:
             king = King(self.board, x, y)
             return king.list_available_moves()
 
-    def validate_move(self, figure, x, y):
+    def validate_move(self, figure, x, y, x_dest, y_dest):
         if figure == "pawn":
             pawn = Pawn(self.board, x, y)
-            return pawn.validate_move(dest_field)
+            return pawn.validate_move(x_dest, y_dest)
 
         if figure == "rook":
             rook = Rook(self.board, x, y)

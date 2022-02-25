@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-
+from field_function import tuple_to_string
 
 class Figure(ABC):
     @abstractmethod
@@ -16,5 +16,9 @@ class Figure(ABC):
         pass
 
     @abstractmethod
-    def validate_move(self, dest_field):
-        pass
+    def validate_move(self, x_dest, y_dest):
+        dest_fields = tuple_to_string([self.board[y_dest][x_dest]])
+        if dest_fields[0] in self.list_available_moves():
+            return "is validate"
+        else:
+            return "isn't validate"

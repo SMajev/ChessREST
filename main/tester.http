@@ -1,3 +1,3 @@
-GET http://localhost:8000/api/avail_moves?figure=pawn&current_field=H3
+GET http://localhost:8000/api/avail_moves?figure=king&current_field=E3
 ###
-POST http://localhost:8000/test2
+GET http://localhost:8000/api/is_validate?figure=pawn&current_field=A3&destination=A4
