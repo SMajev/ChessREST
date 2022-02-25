@@ -6,14 +6,16 @@ Simple API to get possile moves of any chess figure based on field or to check d
 - PyTest == 7.0.1
 
 ## Manual to API
-To Check all possible moves of figure:
+###To Check all possible moves of figure:
     http://localhost:8000/api/opt1/{figure}/{current_field}
-    example: http://localhost:8000/api/opt1/rook/h8
+    ####example: 
+    http://localhost:8000/api/opt1/rook/h8
 
-To check that move is valid for figure on field:
+###To check that move is valid for figure on field:
     http://localhost:8000/api/opt2/{figure}/{current_field}/{destination_field}
-    example: http://localhost:8000/api/opt2/rook/h2/h8
-    
+    ####example: 
+    http://localhost:8000/api/opt2/rook/h2/h8
+
 All figures in chess game:
     [pawn, rook, bishop, knight, queen, king]
 
