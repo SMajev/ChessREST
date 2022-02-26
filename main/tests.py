@@ -48,8 +48,7 @@ def test_rook():
         "F7",
         "G4",
         "F8",
-        "H4"
-       
+        "H4",
     ]
     assert rook.list_available_moves() == result
 
