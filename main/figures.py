@@ -58,10 +58,12 @@ class Rook(Figure):
         avail_moves = []
 
         for i in range(len(self.board)):
-            if self.board[i][self.x] != self.position:
+            if (
+                self.board[i][self.x] != self.position
+                and self.board[self.y][i] != self.position
+            ):
                 avail_moves.append(self.board[i][self.x])
                 avail_moves.append(self.board[self.y][i])
-        
 
         return tuple_to_string(avail_moves)
 
@@ -139,10 +141,12 @@ class Queen(Figure):
         avail_moves = []
 
         for i in range(len(self.board)):
-            if self.board[i][self.x] != self.position:
+            if (
+                self.board[i][self.x] != self.position
+                and self.board[self.y][i] != self.position
+            ):
                 avail_moves.append(self.board[i][self.x])
                 avail_moves.append(self.board[self.y][i])
-       
 
         def append(dx, dy):
             for i in range(len(self.board)):
