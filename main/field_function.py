@@ -1,10 +1,3 @@
-def field_check(x, y):
-    if 0 < x < 9 and 0 < y < 9:
-        return True
-    else:
-        return False
-
-
 def field_convert(field):
     x_letter = field[:1].lower()
     letters = ["a", "b", "c", "d", "e", "f", "g", "h"]
