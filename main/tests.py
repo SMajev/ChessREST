@@ -36,19 +36,20 @@ def test_rook():
     rook = Rook(x, y)
     result = [
         "F1",
-        "F2",
-        "F3",
-        "F5",
-        "F6",
-        "F7",
-        "F8",
         "A4",
+        "F2",
         "B4",
+        "F3",
         "C4",
-        "D4",
+        "F5",
         "E4",
+        "F6",
+        "F4",
+        "F7",
         "G4",
-        "H4",
+        "F8",
+        "H4"
+       
     ]
     assert rook.list_available_moves() == result
 
@@ -72,18 +73,18 @@ def test_queen():
     queen = Queen(x, y)
     result = [
         "F1",
-        "F2",
-        "F3",
-        "F5",
-        "F6",
-        "F7",
-        "F8",
         "A4",
+        "F2",
         "B4",
+        "F3",
         "C4",
-        "D4",
+        "F5",
         "E4",
+        "F6",
+        "F4",
+        "F7",
         "G4",
+        "F8",
         "H4",
         "E3",
         "D2",
