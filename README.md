@@ -11,7 +11,7 @@ Simple API to get possile moves of any chess figure based on field or to check d
 #### example: 
     http://localhost:8000/api/opt1/rook/h8
 
-### To check that move is valid for figure on field:
+### To check is move is valid for figure on field:
     http://localhost:8000/api/opt2/{figure}/{current_field}/{destination_field}
 #### example: 
     http://localhost:8000/api/opt2/rook/h2/h8
