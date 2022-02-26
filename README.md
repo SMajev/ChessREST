@@ -1,6 +1,6 @@
 # Chess API 
 Simple API to get possile moves of any chess figure based on field or to check does move of figure is possible.
-## Technologies use in project
+## Technologies used in project
 - Python == 3.9.5
 - Flask == 2.0.3
 - PyTest == 7.0.1
