@@ -1,0 +1,13 @@
+W API.py warto byłoby wprowadzić fabrykę, która na podstawie nazwy
+zwróci odpowiednią instancję obiektu. Dzięki temu np. zmiana nazewnictwa
+z angielskiego na polskie będzie potrzebna tylko w jednym miejscu.
+
+Kod jest niezgodny z API (opt1, opt2). O ile wewnątrz aplikacji
+dowolność jest duża, o tyle często jest sytuacja, że trzeba się
+dostosować do API, którego wymaga inna usługa (być może zarządzana przez
+kogoś innego) i zgodność z API trzeba zapewnić (lub negocjować zmiany).
+W przeciwnym razie systemy mogą nie współdziałać.
+
+W dniu 2.03.2022 o 12:24, smajev pisze:
+> Tak, bardzo bym prosił w miarę możliwości o opisanie rzeczy których
+> dociągnięciem powininem się zająć. Z góry bardzo za to dziękuje i jestem bardzo wdzięczny za taką możliwość.

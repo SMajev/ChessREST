@@ -200,3 +200,9 @@ class King(Figure):
 
     def validate_move(self, x_dest, y_dest):
         return super().validate_move(x_dest, y_dest)
+
+
+
+if __name__ == "__main__": 
+    pawn = Pawn(2,2)
+    print(pawn.moves)

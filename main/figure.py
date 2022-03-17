@@ -11,8 +11,8 @@ class Figure(ABC):
         self.color = ""
         self.y = y
         self.x = x
-        print(self.x)
         self.position = self.board[self.y][self.x]
+        self.moves = self.list_available_moves()
 
     @abstractmethod
     def list_available_moves(self):
@@ -25,3 +25,4 @@ class Figure(ABC):
             return "is validate"
         else:
             return "isn't validate"
+
