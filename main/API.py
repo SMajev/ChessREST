@@ -33,12 +33,15 @@ class API:
                     figure_class = King(x, y)
 
                 else:
-                    return self.serializer.serilize(None, error, current_field), 404
+                    result_json = self.serializer.serilize(None, error, current_field), 404
+                    return result_json
 
             else:
-                return self.serializer.serilize(figure_class, error, current_field), 404
+                result_json = self.serializer.serilize(figure_class, error, current_field), 404
+                return result_json
 
-            return self.serializer.serilize(figure_class, error, current_field), 200
+            result_json = self.serializer.serilize(figure_class, error, current_field), 200
+            return result_json
             
 
 
@@ -48,30 +51,25 @@ class API:
 
 
 
-    def validate_move(self, figure, x, y, x_dest, y_dest):
+    def validate_move(self, figure, current_field, x_dest, y_dest):
+        x , y, error = field_convert(current_field)
         if figure == "pawn":
             pawn = Pawn(x, y)
-            return pawn.validate_move(x_dest, y_dest)
 
-        if figure == "rook":
+        elif figure == "rook":
             rook = Rook(x, y)
-            return rook.validate_move(x_dest, y_dest)
 
-        if figure == "bishop":
+        elif figure == "bishop":
             bishop = Bishop(x, y)
-            return bishop.validate_move(x_dest, y_dest)
 
-        if figure == "knight":
+        elif figure == "knight":
             knight = Knight(x, y)
-            return knight.validate_move(x_dest, y_dest)
 
-        if figure == "queen":
+        elif figure == "queen":
             queen = Queen(x, y)
-            return queen.validate_move(x_dest, y_dest)
 
-        if figure == "king":
+        elif figure == "king":
             king = King(x, y)
-            return king.validate_move(x_dest, y_dest)
 
         else:
             return False
