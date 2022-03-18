@@ -7,6 +7,7 @@ class AvaiableMovesSerializer:
                 'error': error,
                 'current_field': current_field,
             }
+            
         else:
             self.figure_json = {
                 'error': 'No such figure!',
@@ -25,6 +26,7 @@ class ValidateMoveSerializer:
                 'current_field': current_field,
                 'destination_field': destination_field
             }
+
         else:
             self.figure_json = {
                 'error': f"{error}, {error_destination}",
@@ -32,7 +34,6 @@ class ValidateMoveSerializer:
                 'destination_field': destination_field
             }
 
-            
         return self.figure_json
 
 
