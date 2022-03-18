@@ -31,6 +31,7 @@ class ValidateMoveSerializer:
                 'current_field': current_field,
                 'destination_field': destination_field
             }
+
             
         return self.figure_json
 
