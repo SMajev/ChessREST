@@ -1,4 +1,3 @@
-from turtle import position
 from figures import *
 from field_function import field_convert
 from serializers import AvaiableMovesSerializer, ValidateMoveSerializer
