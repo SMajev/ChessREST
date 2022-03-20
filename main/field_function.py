@@ -6,6 +6,7 @@ def field_convert(field):
         y = int(field[1:]) - 1
         error = None
         return x, y, error
+        
     except:
         x = None
         y = None

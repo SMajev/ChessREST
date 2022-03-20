@@ -11,11 +11,6 @@ API = API()
 def show_available_moves_for(figure, current_field):
 
     available_moves, code = API.show_avail_moves_request(figure, current_field)
-
-    #     if available_moves:
-    #         code = 200
-    #     else:
-    #         code = 404
     # else:
     #     available_moves = None
     #     code = 409
@@ -23,29 +18,17 @@ def show_available_moves_for(figure, current_field):
     return jsonify(available_moves), code
 
 
-@APP.route(
-    "/api/opt2/<string:figure>/<string:current_field>/<string:destination_field>",
+@APP.route("/api/opt2/<string:figure>/<string:current_field>/<string:destination_field>",
     methods=["GET"],
 )
 def validate_move(figure, current_field, destination_field):
-    try:
-        x, y, error = field_convert(current_field)
-        if error != "This field doesn't exist!":
-            x_dest, y_dest, error = field_convert(destination_field)
-            move = API.validate_move(figure, x, y, x_dest, y_dest)
-            if move:
-                code = 200
-            else:
-                code = 409
-        else:
-            move = None
-
-        return (
-            jsonify(move),
-            code,
-        )
-    except:
-        return 500
+    move, code = API.validate_move(figure, current_field, destination_field)
+        #     if move:
+        #         code = 200
+        #     else:
+        #         code = 409
+        # else:
+    return jsonify(move), code
 
 
 if __name__ == "__main__":
