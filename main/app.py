@@ -1,7 +1,6 @@
-from flask import Flask, request
-from flask import jsonify
+from flask import Flask, jsonify
 from API import API
-from field_function import field_convert
+
 
 APP = Flask(__name__)
 API = API()
