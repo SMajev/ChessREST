@@ -34,14 +34,7 @@ class API:
                 result = self.serializer.serilize(None, error, current_field), 404
                 return result
 
-                
-
             result = self.serializer.serilize(figure_class, error, current_field), 200
-
-            # else:
-            #     result = self.serializer.serilize(figure_class, error, current_field), 404
-        
-
             return result
             
         except:
@@ -51,6 +44,7 @@ class API:
 
     def validate_move(self, figure, current_field, destination_field):
         self.serializer = ValidateMoveSerializer()
+        
         try:
             x , y, error = field_convert(current_field)
             x_dest, y_dest, error_destination = field_convert(destination_field)
@@ -75,18 +69,27 @@ class API:
                     figure_class = King(x, y)
 
                 else:
-                    result_json = (
+                    result = (
                         ValidateMoveSerializer(
                             None, error, error_destination, current_field, destination_field
                         ), 404
                     )
-                    return result_json
+                    
+
+                result = (
+                    ValidateMoveSerializer(
+                        figure_class, error, error_destination, current_field, destination_field
+                    ), 200
+                )
+                return result
+                
             else:
-                result_json = (
+                result = (
                     ValidateMoveSerializer(
                         figure_class, error, error_destination, current_field, destination_field
                     ), 404
                 )
+                return result
 
         except:
-            return 404
+            return {'error': 404}, 404

@@ -28,8 +28,6 @@ class AvaiableMovesSerializer:
                 'current_field': current_field,
             }
 
-
-
         return self.figure_json
 
 
