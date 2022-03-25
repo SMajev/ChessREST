@@ -17,6 +17,7 @@ def show_available_moves_for(figure, current_field):
     return jsonify(available_moves), code
 
 
+
 @APP.route("/api/opt2/<string:figure>/<string:current_field>/<string:destination_field>",
     methods=["GET"],
 )
